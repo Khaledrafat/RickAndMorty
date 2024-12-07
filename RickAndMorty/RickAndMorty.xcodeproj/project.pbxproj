@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		040D80352D04A8AB0056F1E5 /* DefaultCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D80342D04A8AB0056F1E5 /* DefaultCharacter.swift */; };
 		0447A2C42D0501A400BCAA9A /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447A2C32D0501A400BCAA9A /* CustomCollectionViewCell.swift */; };
-		0447A2C62D05027300BCAA9A /* HomeViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0447A2C52D05027300BCAA9A /* HomeViewController+UI.swift */; };
 		045B75022D02040B00C45C27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B75012D02040B00C45C27 /* AppDelegate.swift */; };
 		045B750B2D02040D00C45C27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045B750A2D02040D00C45C27 /* Assets.xcassets */; };
 		045B750E2D02040D00C45C27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B750C2D02040D00C45C27 /* LaunchScreen.storyboard */; };
@@ -26,7 +25,6 @@
 		045B754C2D02062000C45C27 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B75492D02062000C45C27 /* AlertView.swift */; };
 		045B754D2D02062000C45C27 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B754A2D02062000C45C27 /* Loader.swift */; };
 		045B75542D020B1200C45C27 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B75522D020B1200C45C27 /* HomeViewController.swift */; };
-		045B75552D020B1200C45C27 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045B75532D020B1200C45C27 /* HomeViewController.xib */; };
 		045B755B2D020DEA00C45C27 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B755A2D020DEA00C45C27 /* HomeViewModel.swift */; };
 		045B755D2D020EA100C45C27 /* HomeUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B755C2D020EA100C45C27 /* HomeUseCases.swift */; };
 		045B755F2D020F6600C45C27 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B755E2D020F6600C45C27 /* Character.swift */; };
@@ -63,7 +61,6 @@
 /* Begin PBXFileReference section */
 		040D80342D04A8AB0056F1E5 /* DefaultCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCharacter.swift; sourceTree = "<group>"; };
 		0447A2C32D0501A400BCAA9A /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
-		0447A2C52D05027300BCAA9A /* HomeViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+UI.swift"; sourceTree = "<group>"; };
 		045B74FE2D02040B00C45C27 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045B75012D02040B00C45C27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		045B75052D02040B00C45C27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +83,6 @@
 		045B75492D02062000C45C27 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		045B754A2D02062000C45C27 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		045B75522D020B1200C45C27 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		045B75532D020B1200C45C27 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		045B755A2D020DEA00C45C27 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		045B755C2D020EA100C45C27 /* HomeUseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCases.swift; sourceTree = "<group>"; };
 		045B755E2D020F6600C45C27 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
@@ -280,9 +276,7 @@
 			children = (
 				045B75662D021ED100C45C27 /* HomeCollectionCell */,
 				045B75522D020B1200C45C27 /* HomeViewController.swift */,
-				0447A2C52D05027300BCAA9A /* HomeViewController+UI.swift */,
 				045B75642D021E8400C45C27 /* HomeViewController+Collection.swift */,
-				045B75532D020B1200C45C27 /* HomeViewController.xib */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -480,7 +474,6 @@
 			files = (
 				045B750E2D02040D00C45C27 /* LaunchScreen.storyboard in Resources */,
 				045B750B2D02040D00C45C27 /* Assets.xcassets in Resources */,
-				045B75552D020B1200C45C27 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,7 +517,6 @@
 				045B755B2D020DEA00C45C27 /* HomeViewModel.swift in Sources */,
 				045B75712D02789F00C45C27 /* HomeCollectionSwiftUICell.swift in Sources */,
 				04AFA4022D029718002BDDBB /* CharacterDetailsViewModel.swift in Sources */,
-				0447A2C62D05027300BCAA9A /* HomeViewController+UI.swift in Sources */,
 				0447A2C42D0501A400BCAA9A /* CustomCollectionViewCell.swift in Sources */,
 				045B75392D0204F000C45C27 /* Network.swift in Sources */,
 				045B755D2D020EA100C45C27 /* HomeUseCases.swift in Sources */,
