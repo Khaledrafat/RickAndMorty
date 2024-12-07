@@ -46,10 +46,10 @@ class DefaultHomeCollectionCell: UICollectionViewCell, HomeCollectionCell {
     }
     
     func configure(character: Character?, width: CGFloat) {
+        let defaultCharacter = DefaultCharacter()
+        defaultCharacter.character = character
         let cellView = HomeCollectionSwiftUICell(
-            name: (character?.name).defaultValue,
-            type: (character?.type).defaultValue,
-            imageUrl: (character?.image).defaultValue,
+            character: defaultCharacter,
             width: width
         )
         

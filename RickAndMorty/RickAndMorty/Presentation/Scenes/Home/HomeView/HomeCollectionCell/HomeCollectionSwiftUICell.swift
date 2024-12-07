@@ -9,9 +9,7 @@ import SwiftUI
 
 struct HomeCollectionSwiftUICell: View {
     
-    var name: String
-    var type: String
-    var imageUrl: String?
+    @StateObject var character: DefaultCharacter
     var width: CGFloat
     
     //MARK: - Body
@@ -34,7 +32,7 @@ struct HomeCollectionSwiftUICell: View {
     //MARK: - Content View
     var contentView: some View {
         HStack(alignment: .top) {
-            if let url = URL(string: imageUrl.defaultValue) {
+            if let url = URL(string: (character.character?.image).defaultValue) {
                 AsyncImageView(url: url)
                     .frame(width: 60, height: 60)
                     .cornerRadius(8)
@@ -58,6 +56,6 @@ struct HomeCollectionSwiftUICell: View {
 
 struct HomeCollectionSwiftUICell_Previews: PreviewProvider {
     static var previews: some View {
-        HomeCollectionSwiftUICell(name: "Test", type: "Type", imageUrl: nil, width: 200)
+        HomeCollectionSwiftUICell(character: DefaultCharacter(), width: 200)
     }
 }

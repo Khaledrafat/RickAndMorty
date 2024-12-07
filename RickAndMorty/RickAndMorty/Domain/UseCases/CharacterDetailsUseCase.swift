@@ -23,6 +23,7 @@ final class DefaultCharacterDetailsUseCase: CharacterDetailsUseCase {
         self.detailsRepo = detailsRepo
     }
     
+    //MARK: - Fetch Character Details
     func fetchCharacterDetails(id: Int, completion: @escaping (Result<Character, Error>) -> Void) {
         detailsRepo.fetchDetails(id: id, completion: completion)
     }

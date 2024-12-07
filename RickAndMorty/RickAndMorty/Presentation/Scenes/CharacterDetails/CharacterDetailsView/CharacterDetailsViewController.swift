@@ -16,7 +16,7 @@ class CharacterDetailsViewController: UIViewController {
     
     private var characterDetailsHostController: UIHostingController<CharacterDetailsView>?
     
-    let char = Charac()
+    private let defaultCharacter = DefaultCharacter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,7 @@ class CharacterDetailsViewController: UIViewController {
             [weak self] character in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.char.character = character
+                self.defaultCharacter.character = character
             }
         })
     }
@@ -70,7 +70,7 @@ class CharacterDetailsViewController: UIViewController {
 extension CharacterDetailsViewController {
     //MARK: - Load View
     private func loadUIView(on parent: UIViewController) {
-        let swiftUIView = CharacterDetailsView(charac: char)
+        let swiftUIView = CharacterDetailsView(character: defaultCharacter)
         characterDetailsHostController = UIHostingController(rootView: swiftUIView)
         
         let host = UIHostingController(rootView: swiftUIView)

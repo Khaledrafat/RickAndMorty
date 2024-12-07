@@ -12,7 +12,10 @@ protocol HomeUseCases {
         completion: @escaping (Result<Characters, Error>) -> Void
     )
     
-    func filter(type: Filter, characters: [Character]) -> [Character]
+    func filterCharacters(
+        with filter: CharacterFilter,
+        characters: [Character]
+    ) -> [Character]
 }
 
 //MARK: - DefaultHomeUseCases
@@ -29,8 +32,22 @@ final class DefaultHomeUseCases: HomeUseCases {
         homeRepo.fetchCharacters(completion: completion)
     }
     
-    //MARK: - Filter Data
-    func filter(type: Filter, characters: [Character]) -> [Character] {
-        return characters.filter({ $0.status ?? .unknown == type })
+    //MARK: - Filter Characters
+    func filterCharacters(with filter: CharacterFilter, characters: [Character]) -> [Character] {
+        let result = characters.filter { character in
+            switch filter {
+            case .alive, .dead, .unknown:
+                if (character.status?.rawValue) ?? "" == filter.rawValue {
+                    return true
+                } else {
+                    return false
+                }
+                
+            case .all:
+                return true
+            }
+        }
+        
+        return result
     }
 }

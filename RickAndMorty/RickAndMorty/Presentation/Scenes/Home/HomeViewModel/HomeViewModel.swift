@@ -14,12 +14,12 @@ protocol HomeCoordinator: AnyObject {
 
 protocol HomeViewModelInput {
     func viewDidLoad()
-    func filter(with type: Filter)
+    func filter(with type: CharacterFilter)
     func didSelectRow(at index: Int)
 }
 
 protocol HomeViewModelOutput {
-    var characters: Observable<Characters> { get }
+    var filteredCharacters: Observable<FilteredCharacters> { get }
     var isLoading: Observable<Bool> { get }
     var showError: Observable<String> { get }
 }
@@ -29,31 +29,21 @@ protocol HomeViewModel: HomeViewModelInput, HomeViewModelOutput { }
 //MARK: - DefaultHomeViewModel
 final class DefaultHomeViewModel {
     
-    var characters: Observable<Characters> = Observable(Characters(info: nil, results: [])) {
-        didSet {
-            aliveFilter = nil
-            deadFilter = nil
-            unknownFilter = nil
-        }
-    }
+    var filteredCharacters: Observable<FilteredCharacters> = Observable(FilteredCharacters())
     var isLoading: Observable<Bool> = Observable(false)
     var showError: Observable<String> = Observable("")
     weak var coordinator: HomeCoordinator?
     
     private var homeUseCases: HomeUseCases
-    private var allCharacters: [Character]?
-    private var aliveFilter: [Character]?
-    private var deadFilter: [Character]?
-    private var unknownFilter: [Character]?
+    private var characters: Characters?
     
     init(homeUseCases: HomeUseCases) {
         self.homeUseCases = homeUseCases
     }
 }
 
-//MARK: - Implementation
 extension DefaultHomeViewModel: HomeViewModel {
-    
+    //MARK: - ViewDidLoad
     func viewDidLoad() {
         self.isLoading.value = true
         homeUseCases.fetchCharacters { [weak self] result in
@@ -63,36 +53,29 @@ extension DefaultHomeViewModel: HomeViewModel {
             case .failure(let error):
                 self.showError.value = error.localizedDescription
             case .success(let value):
-                self.characters.value = value
+                self.characters = value
+                self.filteredCharacters.value = FilteredCharacters(characters: value.results, filter: .all)
             }
         }
     }
     
+    //MARK: - Did Select Row
     func didSelectRow(at index: Int) {
-        guard let item = self.characters.value.results?[index],
+        guard let item = self.filteredCharacters.value.characters?[index],
               let id = item.id
         else { return }
         self.coordinator?.openDetails(id: id)
     }
     
-    
-    
-    
-    
-    
-    
     //MARK: - Filter
-    func filter(with type: Filter) {
-        switch type {
-        case .alive:
-            guard aliveFilter == nil else { return }
-            aliveFilter = homeUseCases.filter(type: type, characters: self.characters.value.results ?? [])
-        case .dead:
-            guard deadFilter == nil else { return }
-            deadFilter = homeUseCases.filter(type: type, characters: self.characters.value.results ?? [])
-        case .unknown:
-            guard unknownFilter == nil else { return }
-            unknownFilter = homeUseCases.filter(type: type, characters: self.characters.value.results ?? [])
-        }
+    func filter(with type: CharacterFilter) {
+        guard filteredCharacters.value.filter != type else { return }
+        let filteredData = self.homeUseCases.filterCharacters(
+            with: type,
+            characters: self.characters?.results ?? []
+        )
+        
+        let finalResult = FilteredCharacters(characters: filteredData, filter: type)
+        self.filteredCharacters.value = finalResult
     }
 }

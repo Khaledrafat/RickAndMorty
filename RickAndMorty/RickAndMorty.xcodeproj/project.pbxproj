@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040D80352D04A8AB0056F1E5 /* DefaultCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D80342D04A8AB0056F1E5 /* DefaultCharacter.swift */; };
+		040D80392D04A98C0056F1E5 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D80372D04A98C0056F1E5 /* TestCell.swift */; };
+		040D803A2D04A98C0056F1E5 /* TestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040D80382D04A98C0056F1E5 /* TestCell.xib */; };
 		045B75022D02040B00C45C27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045B75012D02040B00C45C27 /* AppDelegate.swift */; };
 		045B750B2D02040D00C45C27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 045B750A2D02040D00C45C27 /* Assets.xcassets */; };
 		045B750E2D02040D00C45C27 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045B750C2D02040D00C45C27 /* LaunchScreen.storyboard */; };
@@ -59,6 +62,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040D80342D04A8AB0056F1E5 /* DefaultCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCharacter.swift; sourceTree = "<group>"; };
+		040D80372D04A98C0056F1E5 /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
+		040D80382D04A98C0056F1E5 /* TestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestCell.xib; sourceTree = "<group>"; };
 		045B74FE2D02040B00C45C27 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		045B75012D02040B00C45C27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		045B75052D02040B00C45C27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040D80362D04A9770056F1E5 /* TestCell */ = {
+			isa = PBXGroup;
+			children = (
+				040D80372D04A98C0056F1E5 /* TestCell.swift */,
+				040D80382D04A98C0056F1E5 /* TestCell.xib */,
+			);
+			path = TestCell;
+			sourceTree = "<group>";
+		};
 		045B74F52D02040B00C45C27 = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				045B755E2D020F6600C45C27 /* Character.swift */,
+				040D80342D04A8AB0056F1E5 /* DefaultCharacter.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -320,6 +336,7 @@
 		045B75662D021ED100C45C27 /* HomeCollectionCell */ = {
 			isa = PBXGroup;
 			children = (
+				040D80362D04A9770056F1E5 /* TestCell */,
 				045B756E2D02778B00C45C27 /* HomeCollectionCell.swift */,
 				045B75702D02789F00C45C27 /* HomeCollectionSwiftUICell.swift */,
 			);
@@ -473,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				045B750E2D02040D00C45C27 /* LaunchScreen.storyboard in Resources */,
+				040D803A2D04A98C0056F1E5 /* TestCell.xib in Resources */,
 				045B750B2D02040D00C45C27 /* Assets.xcassets in Resources */,
 				045B75552D020B1200C45C27 /* HomeViewController.xib in Resources */,
 			);
@@ -509,6 +527,7 @@
 				045B754C2D02062000C45C27 /* AlertView.swift in Sources */,
 				045B756F2D02778B00C45C27 /* HomeCollectionCell.swift in Sources */,
 				045B75632D021B3700C45C27 /* HomeRepoImp.swift in Sources */,
+				040D80352D04A8AB0056F1E5 /* DefaultCharacter.swift in Sources */,
 				04AFA4062D029761002BDDBB /* CharacterDetailsRepoImp.swift in Sources */,
 				045B75612D0210D600C45C27 /* HomeRepo.swift in Sources */,
 				045B754B2D02062000C45C27 /* AsyncImageView.swift in Sources */,
@@ -519,6 +538,7 @@
 				045B75712D02789F00C45C27 /* HomeCollectionSwiftUICell.swift in Sources */,
 				04AFA4022D029718002BDDBB /* CharacterDetailsViewModel.swift in Sources */,
 				045B75392D0204F000C45C27 /* Network.swift in Sources */,
+				040D80392D04A98C0056F1E5 /* TestCell.swift in Sources */,
 				045B755D2D020EA100C45C27 /* HomeUseCases.swift in Sources */,
 				045B75442D0205B800C45C27 /* BaseViewController.swift in Sources */,
 				04AFA4002D029714002BDDBB /* CharacterDetailsViewController.swift in Sources */,

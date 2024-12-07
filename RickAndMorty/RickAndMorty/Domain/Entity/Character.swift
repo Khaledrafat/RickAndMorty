@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-// MARK: - Ss
+// MARK: - Characters
 struct Characters: Codable {
     let info: Info?
     let results: [Character]?
@@ -21,7 +21,7 @@ struct Info: Codable {
     let prev: String?
 }
 
-// MARK: - Result
+// MARK: - Character
 struct Character: Codable {
     let id: Int?
     let name: String?
@@ -58,4 +58,17 @@ enum Filter: String, Codable {
             return Color.clear
         }
     }
+}
+
+enum CharacterFilter: String {
+    case alive = "Alive"
+    case dead = "Dead"
+    case unknown = "unknown"
+    case all = "all"
+}
+
+//MARK: - Filter Characters
+struct FilteredCharacters {
+    var characters: [Character]?
+    var filter: CharacterFilter = .all
 }

@@ -56,8 +56,8 @@ class HomeViewController: UIViewController {
         })
         
         //MARK: - Bind Reloading Data
-        viewModel?.characters.observe(on: self, observerBlock: {
-            [weak self] characters in
+        viewModel?.filteredCharacters.observe(on: self, observerBlock: {
+            [weak self] filteredCharacters in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -69,7 +69,26 @@ class HomeViewController: UIViewController {
     private func collectionSetup() {
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(DefaultHomeCollectionCell.self, forCellWithReuseIdentifier: "DefaultHomeCollectionCell")
-        collectionView.backgroundColor = .green
+//        collectionView.register(DefaultHomeCollectionCell.self, forCellWithReuseIdentifier: "DefaultHomeCollectionCell")
+        
+        let nib = UINib(nibName: "TestCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "TestCell")
     }
+    
+    @IBAction func AllButton(_ sender: Any) {
+        self.viewModel?.filter(with: .all)
+    }
+    
+    @IBAction func deadButton(_ sender: Any) {
+        self.viewModel?.filter(with: .dead)
+    }
+    
+    @IBAction func aliveButton(_ sender: Any) {
+        self.viewModel?.filter(with: .alive)
+    }
+    
+    @IBAction func unknownButton(_ sender: Any) {
+        self.viewModel?.filter(with: .unknown)
+    }
+    
 }

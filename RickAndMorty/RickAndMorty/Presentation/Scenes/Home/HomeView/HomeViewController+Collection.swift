@@ -10,16 +10,21 @@ import UIKit
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (viewModel?.characters.value.results?.count).defaultValue
+        return (viewModel?.filteredCharacters.value.characters?.count).defaultValue
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultHomeCollectionCell", for: indexPath) as? HomeCollectionCell else {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultHomeCollectionCell", for: indexPath) as? HomeCollectionCell else {
+//            return UICollectionViewCell()
+//        }
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestCell", for: indexPath) as? TestCell else {
             return UICollectionViewCell()
         }
         
-        let item = viewModel?.characters.value.results?[indexPath.row]
-        cell.configure(character: item, width: collectionView.frame.size.width - 12)
+        cell.nameLbl.text = viewModel?.filteredCharacters.value.characters?[indexPath.row].name
+        
+        cell.statusLbl.text = viewModel?.filteredCharacters.value.characters?[indexPath.row].status?.rawValue
         
         return cell
     }
