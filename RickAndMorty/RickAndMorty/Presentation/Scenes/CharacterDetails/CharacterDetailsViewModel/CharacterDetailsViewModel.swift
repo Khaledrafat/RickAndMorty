@@ -14,7 +14,7 @@ protocol CharacterDetailsViewModelInput {
 protocol CharacterDetailsViewModelOutput {
     var isLoading: Observable<Bool> { get }
     var showError: Observable<String> { get }
-    var character: Observable<Character>? { get }
+    var character: Observable<Character?> { get }
 }
 
 protocol CharacterDetailsViewModel: CharacterDetailsViewModelInput, CharacterDetailsViewModelOutput { }
@@ -27,7 +27,7 @@ final class DefaultCharacterDetailsViewModel {
     
     var isLoading: Observable<Bool> = Observable(false)
     var showError: Observable<String> = Observable("")
-    var character: Observable<Character>? = nil
+    var character: Observable<Character?> = Observable(nil)
     
     init(id: Int, useCase: CharacterDetailsUseCase) {
         self.id = id
@@ -46,7 +46,8 @@ extension DefaultCharacterDetailsViewModel: CharacterDetailsViewModel {
                 self.isLoading.value = false
                 switch result {
                 case.success(let details):
-                    self.character?.value = details
+                    self.character.value = details
+                    print(details)
                 case .failure(let error):
                     self.showError.value = error.localizedDescription
                 }

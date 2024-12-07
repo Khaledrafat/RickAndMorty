@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class CharacterDetailsViewController: UIViewController {
     
@@ -13,15 +14,15 @@ class CharacterDetailsViewController: UIViewController {
     var viewModel: CharacterDetailsViewModel?
     var baseVCActions: BaseViewAction?
     
+    private var characterDetailsHostController: UIHostingController<CharacterDetailsView>?
+    
+    let char = Charac()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupScreen()
         bind()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         viewModel?.viewDidLoad()
     }
     
@@ -30,7 +31,6 @@ class CharacterDetailsViewController: UIViewController {
         if baseVCActions == nil {
             baseVCActions = DefaultBaseViewAction()
         }
-        
     }
     
     //MARK: - Bind
@@ -54,6 +54,45 @@ class CharacterDetailsViewController: UIViewController {
                 } )
             }
         })
+        
+        //MARK: - Load Data
+        viewModel?.character.observe(on: self, observerBlock: {
+            [weak self] character in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.char.character = character
+            }
+        })
     }
     
+}
+
+extension CharacterDetailsViewController {
+    //MARK: - Load View
+    private func loadUIView(on parent: UIViewController) {
+        let swiftUIView = CharacterDetailsView(charac: char)
+        characterDetailsHostController = UIHostingController(rootView: swiftUIView)
+        
+        let host = UIHostingController(rootView: swiftUIView)
+        addChild(host)
+        
+        host.view.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: self.view.frame.size.width,
+            height: self.view.frame.size.height
+        )
+        view.center = self.view.center
+        
+        view.addSubview(host.view)
+        host.didMove(toParent: self)
+        
+        host.view.translatesAutoresizingMaskIntoConstraints = false
+        self.characterDetailsHostController = host
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.loadUIView(on: self)
+    }
 }

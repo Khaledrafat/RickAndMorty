@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         if baseVCActions == nil {
             baseVCActions = DefaultBaseViewAction()
         }
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.title = "Characters"
         collectionSetup()
         viewModel?.viewDidLoad()
     }

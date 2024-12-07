@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: - Ss
 struct Characters: Codable {
@@ -46,4 +47,15 @@ enum Filter: String, Codable {
     case alive = "Alive"
     case dead = "Dead"
     case unknown = "unknown"
+    
+    var color: Color {
+        switch self {
+        case .alive:
+            return Color.cyan
+        case .dead:
+            return Color.red
+        case .unknown:
+            return Color.clear
+        }
+    }
 }
