@@ -61,6 +61,7 @@ class CharacterDetailsViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.defaultCharacter.character = character
+                self.loadUIView(on: self)
             }
         })
     }
@@ -72,10 +73,10 @@ extension CharacterDetailsViewController {
     private func loadUIView(on parent: UIViewController) {
         let swiftUIView = CharacterDetailsView(character: defaultCharacter)
         characterDetailsHostController = UIHostingController(rootView: swiftUIView)
-        
+
         let host = UIHostingController(rootView: swiftUIView)
         addChild(host)
-        
+
         host.view.frame = CGRect(
             x: 0,
             y: 0,
@@ -83,16 +84,16 @@ extension CharacterDetailsViewController {
             height: self.view.frame.size.height
         )
         view.center = self.view.center
-        
+
         view.addSubview(host.view)
         host.didMove(toParent: self)
-        
+
         host.view.translatesAutoresizingMaskIntoConstraints = false
         self.characterDetailsHostController = host
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.loadUIView(on: self)
+//        self.loadUIView(on: self)
     }
 }

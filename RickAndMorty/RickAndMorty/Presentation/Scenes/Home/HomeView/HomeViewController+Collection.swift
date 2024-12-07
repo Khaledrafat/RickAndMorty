@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -14,17 +15,18 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultHomeCollectionCell", for: indexPath) as? HomeCollectionCell else {
-//            return UICollectionViewCell()
-//        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CustomCollectionViewCell
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestCell", for: indexPath) as? TestCell else {
-            return UICollectionViewCell()
+        let defaultCharacter = DefaultCharacter()
+        let item = self.viewModel?.filteredCharacters.value.characters?[indexPath.row]
+        defaultCharacter.character = item
+        
+        cell.contentConfiguration = UIHostingConfiguration {
+            HomeCollectionSwiftUICell(
+                character: defaultCharacter,
+                width: collectionView.frame.size.width - 12
+            )
         }
-        
-        cell.nameLbl.text = viewModel?.filteredCharacters.value.characters?[indexPath.row].name
-        
-        cell.statusLbl.text = viewModel?.filteredCharacters.value.characters?[indexPath.row].status?.rawValue
         
         return cell
     }

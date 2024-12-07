@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let navigation = UINavigationController.init()
-        navigation.isNavigationBarHidden = true
-        navigation.setNavigationBarHidden(true, animated: true)
         appCoordinator = AppCoordinator(navCon: navigation)
         appCoordinator?.start()
         

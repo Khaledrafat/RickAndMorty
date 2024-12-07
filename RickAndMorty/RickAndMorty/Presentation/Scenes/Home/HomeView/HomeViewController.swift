@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     
     //Outlets
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     //MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         }
         self.title = "Characters"
         collectionSetup()
+        setupStackView()
         viewModel?.viewDidLoad()
     }
     
@@ -69,26 +70,6 @@ class HomeViewController: UIViewController {
     private func collectionSetup() {
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.register(DefaultHomeCollectionCell.self, forCellWithReuseIdentifier: "DefaultHomeCollectionCell")
-        
-        let nib = UINib(nibName: "TestCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "TestCell")
+        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
     }
-    
-    @IBAction func AllButton(_ sender: Any) {
-        self.viewModel?.filter(with: .all)
-    }
-    
-    @IBAction func deadButton(_ sender: Any) {
-        self.viewModel?.filter(with: .dead)
-    }
-    
-    @IBAction func aliveButton(_ sender: Any) {
-        self.viewModel?.filter(with: .alive)
-    }
-    
-    @IBAction func unknownButton(_ sender: Any) {
-        self.viewModel?.filter(with: .unknown)
-    }
-    
 }

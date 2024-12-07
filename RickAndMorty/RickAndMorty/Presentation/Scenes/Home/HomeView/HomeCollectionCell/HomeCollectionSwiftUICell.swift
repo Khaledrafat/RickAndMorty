@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeCollectionSwiftUICell: View {
     
-    @StateObject var character: DefaultCharacter
+    @ObservedObject var character: DefaultCharacter
     var width: CGFloat
     
     //MARK: - Body
@@ -20,6 +20,7 @@ struct HomeCollectionSwiftUICell: View {
             Spacer()
         }
         .padding()
+        .background(character.character?.status?.color ?? .clear)
         .cornerRadius(8)
         .overlay(
             RoundedRectangle(cornerRadius: 8)
@@ -44,10 +45,10 @@ struct HomeCollectionSwiftUICell: View {
             }
             
             VStack(alignment: .leading) {
-                Text("Name")
+                Text((character.character?.name).defaultValue)
                     .font(.system(size: 20))
                 
-                Text("Type")
+                Text((character.character?.status?.rawValue).defaultValue)
                     .font(.system(size: 14))
             }
         }
