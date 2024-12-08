@@ -73,23 +73,26 @@ class CharacterDetailsViewController: UIViewController {
 extension CharacterDetailsViewController {
     //MARK: - Load View
     private func loadUIView(on parent: UIViewController) {
-        let swiftUIView = CharacterDetailsView(character: defaultCharacter)
+        var swiftUIView = CharacterDetailsView(character: defaultCharacter)
+        swiftUIView.btnClosure = { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }
         let vc = UIHostingController(rootView: swiftUIView)
-
-            let swiftuiView = vc.view!
-            swiftuiView.translatesAutoresizingMaskIntoConstraints = false
-            
-            addChild(vc)
-            view.addSubview(swiftuiView)
-            
-            NSLayoutConstraint.activate([
-                swiftuiView.topAnchor.constraint(equalTo: view.topAnchor),
-                swiftuiView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                swiftuiView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                swiftuiView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-            ])
-            
-            vc.didMove(toParent: self)
+        
+        let swiftuiView = vc.view!
+        swiftuiView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(vc)
+        view.addSubview(swiftuiView)
+        
+        NSLayoutConstraint.activate([
+            swiftuiView.topAnchor.constraint(equalTo: view.topAnchor),
+            swiftuiView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            swiftuiView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            swiftuiView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        
+        vc.didMove(toParent: self)
     }
     
 }

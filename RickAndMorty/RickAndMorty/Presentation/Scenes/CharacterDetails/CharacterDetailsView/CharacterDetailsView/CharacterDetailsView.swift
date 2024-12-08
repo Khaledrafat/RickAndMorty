@@ -10,11 +10,23 @@ import SwiftUI
 struct CharacterDetailsView: View {
     
     @ObservedObject var character: DefaultCharacter
+    var btnClosure: (()->())?
     
     var body: some View {
         ZStack {
             contentView
                 .edgesIgnoringSafeArea(.top)
+            
+            Button {
+                        btnClosure?()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)
+                            .frame(width: 50, height: 50)
+                            .background(.white)
+                            .cornerRadius(25)
+                            .position(x:50, y:60)
+                    }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
