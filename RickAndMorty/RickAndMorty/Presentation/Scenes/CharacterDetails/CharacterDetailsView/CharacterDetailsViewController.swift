@@ -14,8 +14,6 @@ class CharacterDetailsViewController: UIViewController {
     var viewModel: CharacterDetailsViewModel?
     var baseVCActions: BaseViewAction?
     
-    private var characterDetailsHostController: UIHostingController<CharacterDetailsView>?
-    
     private let defaultCharacter = DefaultCharacter()
     
     override func viewDidLoad() {
@@ -23,6 +21,11 @@ class CharacterDetailsViewController: UIViewController {
         view.backgroundColor = .white
         setupScreen()
         bind()
+        loadUIView(on: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         viewModel?.viewDidLoad()
     }
     
@@ -61,7 +64,6 @@ class CharacterDetailsViewController: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.defaultCharacter.character = character
-                self.loadUIView(on: self)
             }
         })
     }
@@ -72,28 +74,22 @@ extension CharacterDetailsViewController {
     //MARK: - Load View
     private func loadUIView(on parent: UIViewController) {
         let swiftUIView = CharacterDetailsView(character: defaultCharacter)
-        characterDetailsHostController = UIHostingController(rootView: swiftUIView)
+        let vc = UIHostingController(rootView: swiftUIView)
 
-        let host = UIHostingController(rootView: swiftUIView)
-        addChild(host)
-
-        host.view.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: self.view.frame.size.width,
-            height: self.view.frame.size.height
-        )
-        view.center = self.view.center
-
-        view.addSubview(host.view)
-        host.didMove(toParent: self)
-
-        host.view.translatesAutoresizingMaskIntoConstraints = false
-        self.characterDetailsHostController = host
+            let swiftuiView = vc.view!
+            swiftuiView.translatesAutoresizingMaskIntoConstraints = false
+            
+            addChild(vc)
+            view.addSubview(swiftuiView)
+            
+            NSLayoutConstraint.activate([
+                swiftuiView.topAnchor.constraint(equalTo: view.topAnchor),
+                swiftuiView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                swiftuiView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                swiftuiView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
+            
+            vc.didMove(toParent: self)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        self.loadUIView(on: self)
-    }
 }
