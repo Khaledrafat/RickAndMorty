@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeUseCases {
     func fetchCharacters(
+        page: Int,
         completion: @escaping (Result<Characters, Error>) -> Void
     )
     
@@ -28,8 +29,8 @@ final class DefaultHomeUseCases: HomeUseCases {
     }
     
     //MARK: - Fetch Characters
-    func fetchCharacters(completion: @escaping (Result<Characters, Error>) -> Void) {
-        homeRepo.fetchCharacters(completion: completion)
+    func fetchCharacters(page: Int, completion: @escaping (Result<Characters, Error>) -> Void) {
+        homeRepo.fetchCharacters(page: page, completion: completion)
     }
     
     //MARK: - Filter Characters

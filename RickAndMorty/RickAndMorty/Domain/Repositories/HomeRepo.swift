@@ -9,6 +9,7 @@ import Foundation
 
 protocol HomeRepo {
     func fetchCharacters(
+        page: Int,
         completion: @escaping (Result<Characters, Error>) -> Void
     )
 }

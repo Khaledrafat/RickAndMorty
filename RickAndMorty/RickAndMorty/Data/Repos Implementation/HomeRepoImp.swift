@@ -15,8 +15,8 @@ final class HomeRepoImp: HomeRepo {
         self.network = network
     }
     
-    func fetchCharacters(completion: @escaping (Result<Characters, Error>) -> Void) {
-        let url = "https://rickandmortyapi.com/api/character"
+    func fetchCharacters(page: Int, completion: @escaping (Result<Characters, Error>) -> Void) {
+        let url = "https://rickandmortyapi.com/api/character/?page=\(page)"
         let request = DefaultRequestable(stringUrl: url, method: .get)
         network.request(endpoint: request) { request in
             switch request {

@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - Characters
 struct Characters: Codable {
     let info: Info?
-    let results: [Character]?
+    var results: [Character]?
 }
 
 // MARK: - Info

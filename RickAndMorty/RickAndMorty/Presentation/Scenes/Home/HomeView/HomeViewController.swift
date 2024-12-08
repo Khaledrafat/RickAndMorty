@@ -116,13 +116,13 @@ extension HomeViewController {
     @objc func buttonTapped(_ sender: UIButton) {
         switch sender.tag {
         case 1:
-            self.viewModel?.filter(with: .all)
+            self.viewModel?.filter(fromHome: true, with: .all)
         case 2:
-            self.viewModel?.filter(with: .alive)
+            self.viewModel?.filter(fromHome: true, with: .alive)
         case 3:
-            self.viewModel?.filter(with: .dead)
+            self.viewModel?.filter(fromHome: true, with: .dead)
         case 4:
-            self.viewModel?.filter(with: .unknown)
+            self.viewModel?.filter(fromHome: true, with: .unknown)
         default:
             return
         }

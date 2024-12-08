@@ -43,4 +43,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         viewModel?.didSelectRow(at: indexPath.row)
     }
     
+    // MARK: - Pagination Logic
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let threshold = scrollView.contentSize.height - scrollView.frame.size.height
+        if scrollView.contentOffset.y > threshold {
+            self.viewModel?.paginate()
+        }
+    }
+    
 }
