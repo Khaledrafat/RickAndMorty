@@ -21,14 +21,14 @@ struct CharacterDetailsView: View {
                         btnClosure?()
                     } label: {
                         Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
-                            .frame(width: 50, height: 50)
-                            .frame(maxWidth: 50, maxHeight: 50)
-                            .background(.white)
-                            .cornerRadius(25)
-                            .position(x:50, y:60)
                     }
+                    .foregroundColor(.black)
+                    .frame(width: 50, height: 50)
+                    .background(.white)
+                    .cornerRadius(25)
+                    .position(x:50, y:60)
         }
+        .background(Color.white)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     

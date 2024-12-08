@@ -16,7 +16,6 @@ final class HomeViewModelUnitTests: XCTestCase {
         Character.mockStatus(id: 3, name: "Evil Morty", status: .unknown)
     ]
     
-    
     class MockedHomeUseCases: HomeUseCases {
         
         var isSuccess = true
