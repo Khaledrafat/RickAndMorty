@@ -22,7 +22,11 @@ struct Info: Codable {
 }
 
 // MARK: - Character
-struct Character: Codable {
+struct Character: Codable, Equatable {
+    static func == (lhs: Character, rhs: Character) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     let id: Int?
     let name: String?
     let status: Filter?

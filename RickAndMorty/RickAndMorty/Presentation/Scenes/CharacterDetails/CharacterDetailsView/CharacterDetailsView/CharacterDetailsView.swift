@@ -23,6 +23,7 @@ struct CharacterDetailsView: View {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.black)
                             .frame(width: 50, height: 50)
+                            .frame(maxWidth: 50, maxHeight: 50)
                             .background(.white)
                             .cornerRadius(25)
                             .position(x:50, y:60)
