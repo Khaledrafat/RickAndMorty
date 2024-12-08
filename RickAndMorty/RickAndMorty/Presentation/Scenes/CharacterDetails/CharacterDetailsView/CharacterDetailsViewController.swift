@@ -16,6 +16,7 @@ class CharacterDetailsViewController: UIViewController {
     
     private let defaultCharacter = DefaultCharacter()
     
+    //MARK: - Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -24,9 +25,17 @@ class CharacterDetailsViewController: UIViewController {
         loadUIView(on: self)
     }
     
+    //MARK: - Will Appear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
+        viewModel?.viewWillAppear()
+    }
+    
+    //MARK: - Will Disappear
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
     }
     
     //MARK: - Setup Screen
@@ -36,7 +45,6 @@ class CharacterDetailsViewController: UIViewController {
         }
     }
     
-    //MARK: - Bind
     private func bind() {
         //MARK: - Bind Loading
         viewModel?.isLoading.observe(on: self, observerBlock: {

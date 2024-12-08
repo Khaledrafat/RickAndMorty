@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CharacterDetailsViewModelInput {
-    func viewDidLoad()
+    func viewWillAppear()
 }
 
 protocol CharacterDetailsViewModelOutput {
@@ -38,7 +38,7 @@ final class DefaultCharacterDetailsViewModel {
 
 //MARK: - Implementation
 extension DefaultCharacterDetailsViewModel: CharacterDetailsViewModel {
-    func viewDidLoad() {
+    func viewWillAppear() {
         self.isLoading.value = true
         characterDetailsUseCase.fetchCharacterDetails(
             id: self.id) { [weak self] result in
@@ -47,7 +47,6 @@ extension DefaultCharacterDetailsViewModel: CharacterDetailsViewModel {
                 switch result {
                 case.success(let details):
                     self.character.value = details
-                    print(details)
                 case .failure(let error):
                     self.showError.value = error.localizedDescription
                 }
